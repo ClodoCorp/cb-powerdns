@@ -1,13 +1,15 @@
-name             "pdns"
-maintainer       "Opscode, Inc."
-maintainer_email "cookbooks@opscode.com"
-license          "Apache 2.0"
-description      "Installs/Configures pdns"
+name 'powerdns'
+maintainer 'Vasiliy Tolstov'
+maintainer_email 'v.tolstov@selfip.ru'
+license 'MIT'
+description 'Installs/Configures powerdns server and recursor'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          "0.3.4"
-depends "sqlite"
+version '0.0.1'
 
-depends "build-essential"
-depends "mysql"
-depends "git"
-depends "resolvconf"
+depends 'mysql'
+depends 'sqlite'
+
+recipe 'powerdns',         'Runs specific recipe'
+recipe 'powerdns::server', 'Installs powerdns server'
+recipe 'powerdns::mysql',  'Installs powerdns mysql backend'
+recipe 'powerdns::sqlite3',  'Installs powerdns sqlite3 backend'
