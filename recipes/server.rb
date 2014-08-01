@@ -1,5 +1,5 @@
 
-include_recipe "powerdns::#{node['powerdns']['server']['backend']}"
+include_recipe "powerdns::#{node['powerdns']['server_backend']['type']}"
 
 package 'pdns' do
   package_name value_for_platform(
@@ -11,6 +11,13 @@ end
 service node['powerdns']['server']['service'] do
   action [:enable, :start]
 end
+
+node.set['powerdns']['server']['launch'] = 'gmysql'
+node.set['powerdns']['server']['gmysql-dnssec'] = true
+node.set['powerdns']['server']['gmysql-host'] = node['powerdns']['server_backend']['host']
+node.set['powerdns']['server']['gmysql-user'] = node['powerdns']['server_backend']['login']
+node.set['powerdns']['server']['gmysql-password'] = node['powerdns']['server_backend']['passw']
+node.set['powerdns']['server']['gmysql-dbname'] = node['powerdns']['server_backend']['db']
 
 template '/etc/powerdns/pdns.conf' do
   source 'pdns.conf.erb'

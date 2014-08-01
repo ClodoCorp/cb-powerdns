@@ -1,6 +1,6 @@
 default['powerdns']['server_config_version'] = 3
 
-if node['pdns']['server_config_version'] == 2
+if node['powerdns']['server_config_version'] == 2
   default['powerdns']['server']['allow_recursion_override'] = 'off'
   default['powerdns']['server']['lazy_recursion'] = true
   default['powerdns']['server']['logfile'] = 'pdns.log'
