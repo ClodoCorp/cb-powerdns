@@ -1,18 +1,11 @@
-default['powerdns']['user'] = 'pdns'
-default['powerdns']['group'] = 'pdns'
-
 case node['platform_family']
 when 'rhel', 'fedora'
-  default['pdns']['server']['conf.d'] = '/etc/pdns'
-  default['pdns']['recursor']['conf.d'] = '/etc/pdns-recursor'
   default['pdns']['user'] = 'pdns-recursor'
   default['powerdns']['group'] = 'pdns-recursor'
 else
-  default['powerdns']['server']['conf.d'] = '/etc/powerdns'
-  default['powerdns']['recursor']['conf.d'] = '/etc/powerdns'
+  default['powerdns']['user'] = 'pdns'
+  default['powerdns']['group'] = 'pdns'
 end
-
-default['powerdns']['server']['backend'] = 'sqlite3'
 
 default['powerdns']['recursor']['allow_from'] = [
   '127.0.0.0/8',

@@ -1,4 +1,5 @@
 default['powerdns']['server_config_version'] = 3
+default['powerdns']['server_service'] = 'pdns'
 
 if node['powerdns']['server_config_version'] == 2
   default['powerdns']['server']['allow_recursion_override'] = 'off'
@@ -8,16 +9,12 @@ if node['powerdns']['server_config_version'] == 2
   default['powerdns']['server']['use_logfile'] = false
   default['powerdns']['server']['wildcards'] = nil
 else
-  default['powerdns']['server']['edns_subnet_option_number'] = 20_730
-  default['powerdns']['server']['edns_subnet_processing'] = false
+#  default['powerdns']['server']['edns_subnet_option_number'] = 20_730
+#  default['powerdns']['server']['edns_subnet_processing'] = false
   default['powerdns']['server']['entropy_source'] = '/dev/urandom'
-  default['powerdns']['server']['experimental_direct_dnskey'] = false
-  default['powerdns']['server']['experimental_json_interface'] = false
-  default['powerdns']['server']['experimental_logfile'] = '/var/log/pdns.log'
   default['powerdns']['server']['log_dns_queries'] = false
   default['powerdns']['server']['lua_prequery_script'] = nil
   default['powerdns']['server']['max_cache_entries'] = 1_000_000
-  default['powerdns']['server']['max_ent_entries'] = 100_000
   default['powerdns']['server']['overload_queue_length'] = 0
   default['powerdns']['server']['query_local_address6'] = '::'
   default['powerdns']['server']['receiver_threads'] = 1
@@ -42,7 +39,6 @@ default['powerdns']['server']['allow_axfr_ips'] = ['0.0.0.0/0',
 default['powerdns']['server']['allow_recursion'] = ['127.0.0.1']
 default['powerdns']['server']['cache_ttl'] = 20
 default['powerdns']['server']['chroot'] = nil
-default['powerdns']['server']['config_dir'] = '/etc/pdns'
 default['powerdns']['server']['config_name'] = nil
 default['powerdns']['server']['control_console'] = false
 default['powerdns']['server']['daemon'] = true
@@ -70,7 +66,6 @@ default['powerdns']['server']['loglevel'] = 4
 default['powerdns']['server']['master'] = 'off'
 default['powerdns']['server']['max_queue_length'] = 5000
 default['powerdns']['server']['max_tcp_connections'] = 10
-default['powerdns']['server']['module_dir'] = '/usr/lib/pdns'
 default['powerdns']['server']['negquery_cache_ttl'] = 60
 default['powerdns']['server']['no_shuffle'] = false
 default['powerdns']['server']['out_of_zone_additional_processing'] = true
@@ -104,4 +99,4 @@ default['powerdns']['server']['webserver_password'] = nil
 default['powerdns']['server']['webserver_port'] = 8081
 default['powerdns']['server']['webserver_print_arguments'] = false
 default['powerdns']['server']['wildcard_url'] = false
-default['powerdns']['server']['searchdomains'] = ''
+

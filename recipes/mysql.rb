@@ -16,13 +16,13 @@ directory '/var/lib/powerdns' do
   action :create
 end
 
-passw = node['powerdns']['server']['backend']['passw']
-login = node['powerdns']['server']['backend']['login']
-host = node['powerdns']['server']['backend']['host']
-db = node['powerdns']['server']['backend']['db']
+passw = node['powerdns']['server_backend']['passw']
+login = node['powerdns']['server_backend']['login']
+host = node['powerdns']['server_backend']['host']
+db = node['powerdns']['server_backend']['db']
 
 execute 'load_schema' do
-  command "mysql -p\"#{passw}\" -u" # {login}\" -h"#{host}\" -D"#{db}\" < /var/lib/powerdns/schema.sql"
+  command "mysql -p\"#{passw}\" -u\"#{login}\" -h\"#{host}\" -D\"#{db}\" < /var/lib/powerdns/schema.sql"
   action :nothing
 end
 

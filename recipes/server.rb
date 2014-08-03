@@ -8,7 +8,7 @@ package 'pdns' do
   )
 end
 
-service node['powerdns']['server']['service'] do
+service node['powerdns']['server_service'] do
   action [:enable, :start]
 end
 
@@ -24,12 +24,7 @@ template '/etc/powerdns/pdns.conf' do
   owner 'root'
   group 'root'
   mode 0644
-  variables { { variables: node['powerdns']['server'] } }
-  notifies :reload, "service[#{node['powerdns']['server']['service']}]", :immediately
+  variables({ variables: node['powerdns']['server'] })
+  notifies :reload, "service[#{node['powerdns']['server_service']}]", :immediately
 end
 
-directory node['powerdns']['server']['conf.d'] do
-  owner 'root'
-  group 'root'
-  mode 0755
-end
