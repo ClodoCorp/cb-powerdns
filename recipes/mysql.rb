@@ -7,7 +7,7 @@ package 'pdns-backend-mysql' do
   )
 end
 
-package 'mysql-client'
+package 'percona-server-client'
 
 directory '/var/lib/powerdns' do
   owner 'root'
